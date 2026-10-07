@@ -196,8 +196,8 @@
                   "type": "add-to-cart",
                   "static": true,
                   "settings": {
-                    "style_class": "button",
-                    "custom_button_background": "{{ settings.color_palette.foreground }}",
+                    "style_class": "button-custom",
+                    "custom_button_background": "{{ settings.color_palette.color1 }}",
                     "custom_button_text": "{{ settings.color_palette.background }}",
                     "custom_button_border": "{{ settings.color_palette.background }}"
                   },
@@ -405,7 +405,7 @@
       "name": "t:names.product_lookbook",
       "settings": {
         "heading": "Create the look",
-        "background_color": "#D2D2D2",
+        "background_color": "#d2d2d2",
         "section_width": "page-width",
         "padding-block-start": 60,
         "padding-block-end": 60
