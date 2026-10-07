@@ -74,15 +74,16 @@
         "padding-block-end": 0
       }
     },
-    "section_lookbook_zeVEnA": {
-      "type": "section__lookbook",
+    "homepage_lookbook_XGYnqg": {
+      "type": "homepage__lookbook",
       "name": "t:names.lookbook",
       "settings": {
-        "heading": "Hello from React",
-        "background_color": "#D2D2D2",
+        "heading": "Create the Look",
+        "lookbook": "chef",
+        "background_color": "#d2d2d2",
         "section_width": "page-width",
-        "padding-block-start": 24,
-        "padding-block-end": 24
+        "padding-block-start": 60,
+        "padding-block-end": 60
       }
     },
     "hero_MVUtj6": {
@@ -175,11 +176,24 @@
         "padding-block-start": 0,
         "padding-block-end": 40
       }
+    },
+    "homepage_lookbook_Hq73Gp": {
+      "type": "homepage__lookbook",
+      "name": "t:names.lookbook",
+      "settings": {
+        "heading": "Create the Look",
+        "lookbook": "waiter",
+        "background_color": "#d2d2d2",
+        "section_width": "page-width",
+        "padding-block-start": 60,
+        "padding-block-end": 60
+      }
     }
   },
   "order": [
     "hero_iyt6zg",
-    "section_lookbook_zeVEnA",
-    "hero_MVUtj6"
+    "homepage_lookbook_XGYnqg",
+    "hero_MVUtj6",
+    "homepage_lookbook_Hq73Gp"
   ]
 }
