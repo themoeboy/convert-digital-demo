@@ -16,6 +16,10 @@
     <script type="application/json" data-react-props>
       {
         "heading": {{ section.settings.heading | json }},
+        "lookbook": {% if section.settings.lookbook != blank %}{
+          "handle": {{ section.settings.lookbook.system.handle | json }},
+          "id": {{ section.settings.lookbook.system.id | json }}
+        }{% else %}null{% endif %},
         "countLabel": {{ 'content.react_section_count' | t | json }},
         "incrementLabel": {{ 'content.react_section_increment' | t | json }}
       }
@@ -51,6 +55,12 @@
       "id": "heading",
       "label": "t:settings.heading",
       "default": "Hello from React"
+    },
+    {
+      "type": "metaobject",
+      "id": "lookbook",
+      "label": "t:settings.lookbook_entry",
+      "metaobject_type": "lookbook"
     },
     {
       "type": "color",

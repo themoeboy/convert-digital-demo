@@ -223,6 +223,7 @@
     "work_quickly_to_ship": "<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>"
   },
   "info": {
+    "storefront_api_token": "Public Storefront API access token, created in a Headless or custom app. It is visible in page source; never use an Admin API or private token.",
     "actions_display_style": "Icons are always used on mobile",
     "applies_on_image_only": "Applies to images only",
     "aspect_ratio_adjusted": "Adjusted in some layouts",
@@ -252,6 +253,7 @@
     "media_type_info": "Features are populated from your menu links"
   },
   "names": {
+    "storefront_api": "Storefront API",
     "column": "Column",
     "product_title": "Product title",
     "custom_liquid": "Custom Liquid",
@@ -747,6 +749,7 @@
     "below_media": "Below media"
   },
   "settings": {
+    "storefront_api_token": "Storefront API access token",
     "accordion": "Accordion",
     "account": "Account",
     "actions_display_style": "Menu style",
@@ -950,6 +953,7 @@
     "links": "Links",
     "logo": "Logo",
     "logo_font": "Logo font",
+    "lookbook_entry": "Lookbook entry",
     "loop": "Loop",
     "make_details_sticky_desktop": "Sticky on desktop",
     "make_section_full_width": "Make section full width",

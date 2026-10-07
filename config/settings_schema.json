@@ -2116,5 +2116,16 @@
         "default": "equal-width-buttons"
       }
     ]
+  },
+  {
+    "name": "t:names.storefront_api",
+    "settings": [
+      {
+        "type": "text",
+        "id": "storefront_api_token",
+        "label": "t:settings.storefront_api_token",
+        "info": "t:info.storefront_api_token"
+      }
+    ]
   }
 ]

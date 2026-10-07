@@ -40,6 +40,16 @@
   }
 </script>
 
+{%- if settings.storefront_api_token != blank -%}
+  <script type="application/json" id="storefront-api-config">
+    {
+      "token": {{ settings.storefront_api_token | strip | json }},
+      "country": {{ localization.country.iso_code | json }},
+      "language": {{ localization.language.iso_code | upcase | replace: '-', '_' | json }}
+    }
+  </script>
+{%- endif -%}
+
 {%- comment -%}
   Registers Horizon's cart-drawer behaviour against the standard-actions
   bundle (loaded separately into <head>). Module scripts execute in
