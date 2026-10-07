@@ -18,6 +18,7 @@
         "heading": {{ section.settings.heading | json }},
         "rootUrl": {{ routes.root_url | json }},
         "loadingLabel": {{ 'content.react_section_loading' | t | json }},
+        "productPlaceholder": {{ 'product-1' | placeholder_svg_tag: 'h-full w-full' | json }},
         "lookbook": {% if section.settings.lookbook != blank %}{
           "handle": {{ section.settings.lookbook.system.handle | json }},
           "id": {{ section.settings.lookbook.system.id | json }}
@@ -25,13 +26,11 @@
       }
     </script>
     <div data-react-root>
-      {%- if section.settings.heading != blank -%}
-        <h2 class="react-section__heading">{{ section.settings.heading | escape }}</h2>
-      {%- endif -%}
       <p>{{ 'content.react_section_loading' | t }}</p>
     </div>
   </react-section>
 </div>
+
 
 {% stylesheet %}
   react-section {
@@ -45,13 +44,25 @@
     gap: var(--gap-md);
   }
 
-  .lookbook__products {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap-sm);
-    margin: 0;
+  .lookbook__carousel-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
     padding: 0;
-    list-style: none;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .lookbook__carousel-button:disabled {
+    opacity: 0.3;
+    cursor: default;
   }
 {% endstylesheet %}
 
