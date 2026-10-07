@@ -1,0 +1,21 @@
+# This file contains a list of files that will be excluded from Shopify CLI
+# operations such as push, pull, dev, etc.
+#
+# Examples:
+#
+# Ignore a specific file:
+#   templates/product.json
+#
+# Ignore templates with a wildcard pattern:
+#   templates/*.json
+#
+# Ignore templates and sections with a regular expression:
+#   /(templates|sections)/.*\.json/
+
+# Vite / React source and tooling (only built output in assets/ is uploaded)
+frontend/
+node_modules/
+package.json
+package-lock.json
+vite.config.js
+assets/.vite/manifest.json  

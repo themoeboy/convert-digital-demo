@@ -1,0 +1,20 @@
+{
+  "frontend/components/Lookbook.jsx": {
+    "file": "Lookbook-BWvkas6j.js",
+    "name": "Lookbook",
+    "src": "frontend/components/Lookbook.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "frontend/entrypoints/react-sections.jsx"
+    ]
+  },
+  "frontend/entrypoints/react-sections.jsx": {
+    "file": "react-sections-D3b2vTdc.js",
+    "name": "react-sections",
+    "src": "frontend/entrypoints/react-sections.jsx",
+    "isEntry": true,
+    "dynamicImports": [
+      "frontend/components/Lookbook.jsx"
+    ]
+  }
+}
