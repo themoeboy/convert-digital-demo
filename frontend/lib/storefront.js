@@ -29,7 +29,7 @@ export function getStorefrontConfig() {
  * @param {string} query
  * @param {Record<string, unknown>} [variables]
  * @param {{ signal?: AbortSignal }} [options]
- * @returns {Promise<T>} The `data` field of the response.
+ * @returns {Promise<T>}
  */
 export async function storefrontFetch(query, variables = {}, { signal } = {}) {
   const config = getStorefrontConfig();

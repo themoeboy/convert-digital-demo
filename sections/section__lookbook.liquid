@@ -16,12 +16,12 @@
     <script type="application/json" data-react-props>
       {
         "heading": {{ section.settings.heading | json }},
+        "rootUrl": {{ routes.root_url | json }},
+        "loadingLabel": {{ 'content.react_section_loading' | t | json }},
         "lookbook": {% if section.settings.lookbook != blank %}{
           "handle": {{ section.settings.lookbook.system.handle | json }},
           "id": {{ section.settings.lookbook.system.id | json }}
-        }{% else %}null{% endif %},
-        "countLabel": {{ 'content.react_section_count' | t | json }},
-        "incrementLabel": {{ 'content.react_section_increment' | t | json }}
+        }{% else %}null{% endif %}
       }
     </script>
     <div data-react-root>
@@ -43,6 +43,15 @@
     flex-direction: column;
     align-items: flex-start;
     gap: var(--gap-md);
+  }
+
+  .lookbook__products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-sm);
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 {% endstylesheet %}
 

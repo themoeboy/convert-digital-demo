@@ -1,0 +1,20 @@
+/*
+  Tailwind without Preflight, so the theme's base.css styles are left untouched.
+  Classes are only generated for files listed in the @source rules below.
+*/
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities) source(none);
+
+@source '../components';
+@source '../../blocks';
+@source '../../layout';
+@source '../../sections';
+@source '../../snippets';
+@source '../../templates';
+
+@theme {
+  --breakpoint-sm: initial;
+}
+@custom-variant sm (@media (width < 990px));
