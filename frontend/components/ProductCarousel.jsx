@@ -23,10 +23,36 @@ function formatMoney({ amount, currencyCode }) {
   }
 }
 
+/** @param {{ direction: 'left' | 'right' }} props */
+function Chevron({ direction }) {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path
+        d={direction === 'left' ? 'M10 3 5 8l5 5' : 'm6 3 5 5-5 5'}
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="square"
+      />
+    </svg>
+  );
+}
+
 /**
- * @param {{ products: CarouselProduct[], productBase: string, label?: string, placeholder?: string }} props
+ * @param {{
+ *   products: CarouselProduct[],
+ *   productBase: string,
+ *   label?: string,
+ *   heading?: string,
+ *   placeholder?: string,
+ * }} props
  */
-export default function ProductCarousel({ products, productBase, label = 'Products', placeholder }) {
+export default function ProductCarousel({
+  products,
+  productBase,
+  label = 'Products',
+  heading = 'Shop the look',
+  placeholder,
+}) {
   const trackRef = useRef(/** @type {HTMLUListElement | null} */ (null));
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
@@ -61,24 +87,43 @@ export default function ProductCarousel({ products, productBase, label = 'Produc
   const showControls = canPrev || canNext;
 
   return (
-    <div className="lookbook__carousel relative w-full min-w-0" role="region" aria-label={label}>
-      <ul
-        ref={trackRef}
-        className="m-0 flex list-none snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth p-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {products.map((product) => (
-          <li
-            key={product.id}
-            className="w-[calc((100%-1rem)/2)] shrink-0 snap-start sm:w-[calc((100%-1rem)/2.25)]"
-          >
-            <a
-              href={`${productBase}${product.handle}`}
-              className="flex flex-col gap-2 text-inherit no-underline"
+    <div className="product-carousel" role="region" aria-label={label}>
+      <div className="product-carousel__header">
+        <p className="product-carousel__heading">
+          {heading} <span className="product-carousel__count">({products.length})</span>
+        </p>
+        {showControls ? (
+          <div className="product-carousel__controls">
+            <button
+              type="button"
+              className="product-carousel__button"
+              onClick={() => scrollByPage(-1)}
+              disabled={!canPrev}
+              aria-label="Previous products"
             >
-              <div className="aspect-square w-full overflow-hidden bg-black/5">
+              <Chevron direction="left" />
+            </button>
+            <button
+              type="button"
+              className="product-carousel__button"
+              onClick={() => scrollByPage(1)}
+              disabled={!canNext}
+              aria-label="Next products"
+            >
+              <Chevron direction="right" />
+            </button>
+          </div>
+        ) : null}
+      </div>
+
+      <ul ref={trackRef} className="product-carousel__track">
+        {products.map((product) => (
+          <li key={product.id} className="product-carousel__slide">
+            <a href={`${productBase}${product.handle}`} className="product-carousel__tile">
+              <div className="product-carousel__media">
                 {product.featuredImage ? (
                   <img
-                    className="h-full w-full object-cover"
+                    className="product-carousel__image"
                     src={product.featuredImage.url}
                     alt={product.featuredImage.altText ?? product.title}
                     width={product.featuredImage.width}
@@ -87,43 +132,24 @@ export default function ProductCarousel({ products, productBase, label = 'Produc
                   />
                 ) : placeholder ? (
                   <div
-                    className="h-full w-full"
+                    className="product-carousel__placeholder"
                     aria-hidden="true"
                     dangerouslySetInnerHTML={{ __html: placeholder }}
                   />
                 ) : null}
               </div>
-              <span className="lookbook__product-title">{product.title}</span>
-              {product.price ? (
-                <span className="lookbook__product-price">{formatMoney(product.price)}</span>
-              ) : null}
+              <div className="product-carousel__info">
+                <span className="product-carousel__title">{product.title}</span>
+                {product.price ? (
+                  <span className="product-carousel__price">
+                    {formatMoney(product.price)}
+                  </span>
+                ) : null}
+              </div>
             </a>
           </li>
         ))}
       </ul>
-
-      {showControls ? (
-        <div className="mt-4 flex justify-end gap-2">
-          <button
-            type="button"
-            className="lookbook__carousel-button"
-            onClick={() => scrollByPage(-1)}
-            disabled={!canPrev}
-            aria-label="Previous products"
-          >
-            ‹
-          </button>
-          <button
-            type="button"
-            className="lookbook__carousel-button"
-            onClick={() => scrollByPage(1)}
-            disabled={!canNext}
-            aria-label="Next products"
-          >
-            ›
-          </button>
-        </div>
-      ) : null}
     </div>
   );
 }

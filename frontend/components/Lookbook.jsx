@@ -90,6 +90,11 @@ function normalizeLookbook(metaobject) {
   };
 }
 
+/** @param {LookbookData} data */
+function isEmptyLookbook(data) {
+  return !data.title && !data.description && !data.image && data.products.length === 0;
+}
+
 /**
  * @param {{
  *   heading?: string,
@@ -99,12 +104,6 @@ function normalizeLookbook(metaobject) {
  *   productPlaceholder?: string,
  * }} props
  */
-
-/** @param {LookbookData} data */
-function isEmptyLookbook(data) {
-  return !data.title && !data.description && !data.image && data.products.length === 0;
-}
-
 export default function Lookbook({
   heading,
   lookbook,
@@ -146,17 +145,21 @@ export default function Lookbook({
   if (status === 'idle' || (status === 'ready' && data && isEmptyLookbook(data))) return null;
 
   return (
-    <div className="react-section lookbook">
+    <div className="lookbook flex flex-col items-start gap-[var(--gap-md)]">
       {heading ? <h2 className="react-section__heading">{heading}</h2> : null}
 
       {status === 'loading' && loadingLabel ? <p>{loadingLabel}</p> : null}
 
       {status === 'ready' && data ? (
-        <div className="w-full flex flex-row sm:flex-col gap-4">
+        <div
+          className={`grid w-full items-center gap-12 sm:grid-cols-1 sm:gap-8 ${
+            data.image ? 'grid-cols-[5fr_7fr]' : 'grid-cols-1'
+          }`}
+        >
           {data.image ? (
-            <div className="w-1/2 sm:w-full">
+            <div className="flex aspect-[4/5] max-h-[80vh] w-full items-center justify-center bg-current/5 p-8 sm:aspect-square sm:max-h-[60vh]">
               <img
-                className="lookbook__image object-cover"
+                className="h-full! w-full object-contain [image-rendering:pixelated]"
                 src={data.image.url}
                 alt={data.image.altText ?? data.title ?? ''}
                 width={data.image.width}
@@ -165,8 +168,19 @@ export default function Lookbook({
               />
             </div>
           ) : null}
-          <div className="w-1/2 sm:w-full min-w-0 flex flex-col gap-4">
-            {data.description ? <p className="lookbook__description">{data.description}</p> : null}
+          <div className="flex min-w-0 flex-col gap-8">
+            {data.title || data.description ? (
+              <div className="flex max-w-[60ch] flex-col gap-3">
+                {data.title ? (
+                  <p className="m-0 text-xs font-semibold uppercase tracking-[0.14em]">
+                    {data.title}
+                  </p>
+                ) : null}
+                {data.description ? (
+                  <p className="m-0 text-lg leading-[1.6]!">{data.description}</p>
+                ) : null}
+              </div>
+            ) : null}
             {data.products.length ? (
               <ProductCarousel
                 products={data.products}

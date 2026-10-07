@@ -455,40 +455,6 @@ p:empty {
   display: contents;
 }
 
-.flex {
-  display: flex;
-  gap: var(--gap-md);
-}
-
-.grid {
-  --centered-column-number: 12;
-  --full-width-column-number: 14;
-  --centered: column-1 / span var(--centered-column-number);
-  --full-width: column-0 / span var(--full-width-column-number);
-
-  display: flex;
-  flex-direction: column;
-}
-
-@media screen and (min-width: 750px) {
-  .grid {
-    display: grid;
-    gap: 0;
-    grid-template-columns: var(--margin-4xl) repeat(var(--centered-column-number), minmax(0, 1fr)) var(--margin-4xl);
-    grid-template-areas: 'column-0 column-1 column-2 column-3 column-4 column-5 column-6 column-7 column-8 column-9 column-10 column-11 column-12 column-13';
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .grid {
-    grid-template-columns:
-      1fr repeat(
-        var(--centered-column-number),
-        minmax(0, calc((var(--page-width) - var(--page-margin) * 2) / var(--centered-column-number)))
-      )
-      1fr;
-  }
-}
 
 .flip-x {
   scale: -1 1;
@@ -1835,4 +1801,155 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
   .sticky-content {
     margin-top: calc(var(--header-height) * var(--transparent-header-offset-boolean) * -1);
   }
+}
+
+.product-carousel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.product-carousel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.product-carousel__heading {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.product-carousel__count {
+  opacity: 0.55;
+}
+
+.product-carousel__controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.product-carousel__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid currentcolor;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    translate 120ms steps(2),
+    box-shadow 120ms steps(2);
+}
+
+.product-carousel__button:enabled:hover {
+  translate: -2px -2px;
+  box-shadow: 2px 2px 0 currentcolor;
+}
+
+.product-carousel__button:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.product-carousel__track {
+  display: flex;
+  gap: 1rem;
+  margin: 0 -0.5rem;
+  padding: 0.25rem 0.5rem 0.75rem;
+  list-style: none;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 0.5rem;
+  scrollbar-width: none;
+}
+
+.product-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.product-carousel__slide {
+  flex-shrink: 0;
+  width: calc((100% - 1rem) / 2);
+  scroll-snap-align: start;
+}
+
+@media (width < 990px) {
+  .product-carousel__slide {
+    width: calc((100% - 1rem) / 2.25);
+  }
+}
+
+.product-carousel__tile {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid currentcolor;
+  transition:
+    translate 150ms steps(3),
+    box-shadow 150ms steps(3),
+    border-color 150ms steps(3);
+}
+
+.product-carousel__tile:is(:hover, :focus-visible) {
+  translate: -3px -3px;
+  border-color: currentcolor;
+  box-shadow: 6px 6px 0 currentcolor;
+}
+
+.product-carousel__media {
+  aspect-ratio: 1;
+  width: 100%;
+  padding: 1.5rem;
+  overflow: hidden;
+  background: color-mix(in srgb, currentcolor 5%, transparent);
+}
+
+.product-carousel__image,
+.product-carousel__placeholder,
+.product-carousel__placeholder svg {
+  width: 100%;
+  height: 100%;
+}
+
+.product-carousel__image {
+  object-fit: contain;
+  transition: scale 200ms steps(4);
+}
+
+.product-carousel__tile:hover .product-carousel__image {
+  scale: 1.10;
+}
+
+.product-carousel__info {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+
+.product-carousel__title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-carousel__price {
+  font-weight: 600;
 }
