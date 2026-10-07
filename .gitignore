@@ -15,6 +15,7 @@ node_modules/
 
 ## Release files
 release
+package-lock.json
 *.zip
 
 ## Local listings
@@ -23,3 +24,8 @@ listings/
 ## Markdowns
 AGENTS.md
 LICENSE.md
+
+## Assets
+assets/*.js
+assets/theme-*.css
+assets/.vite/manifest.json
