@@ -1,0 +1,39 @@
+{%- doc -%}
+  Shared markup for the lookbook sections: mounts the React Lookbook component.
+  @param {section} section - The section rendering this snippet
+{%- enddoc -%}
+
+{% liquid
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+  render 'vite-tag', entry: 'react-sections.jsx'
+%}
+
+<div
+  class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<div
+  class="section section--{{ section.settings.section_width }} spacing-style{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  style="{% render 'spacing-padding', settings: section.settings %}"
+>
+  <react-section class="block" component="Lookbook">
+    <script type="application/json" data-react-props>
+      {
+        "template": {{ template.name | json }},
+        "heading": {{ section.settings.heading | json }},
+        "rootUrl": {{ routes.root_url | json }},
+        "loadingLabel": {{ 'content.react_section_loading' | t | json }},
+        "productPlaceholder": {{ 'product-1' | placeholder_svg_tag | json }},
+        "productId": {% if product %}{{ 'gid://shopify/Product/' | append: product.id | json }}{% else %}null{% endif %},
+        "lookbook": {% if section.settings.lookbook != blank %}{
+          "handle": {{ section.settings.lookbook.system.handle | json }},
+          "id": {{ section.settings.lookbook.system.id | json }}
+        }{% else %}null{% endif %}
+      }
+    </script>
+    <div data-react-root>
+      <p>{{ 'content.react_section_loading' | t }}</p>
+    </div>
+  </react-section>
+</div>

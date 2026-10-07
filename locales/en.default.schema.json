@@ -421,7 +421,8 @@
     "disclosures": "Disclosures",
     "pills": "Pills",
     "comparison_slider": "Comparison slider",
-    "lookbook": "Lookbook"
+    "lookbook": "Lookbook",
+    "product_lookbook": "Product lookbook"
   },
   "options": {
     "above_carousel": "Above carousel",
@@ -954,6 +955,7 @@
     "logo": "Logo",
     "logo_font": "Logo font",
     "lookbook_entry": "Lookbook entry",
+    "lookbook_heading_default": "Lookbook",
     "loop": "Loop",
     "make_details_sticky_desktop": "Sticky on desktop",
     "make_section_full_width": "Make section full width",
